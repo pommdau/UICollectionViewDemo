@@ -13,7 +13,6 @@
 		D03DD4142562CC1E00DF4F29 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03DD4132562CC1E00DF4F29 /* UIView+AutoLayout.swift */; };
 		D05DB8C4255CB6D600606ED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8C3255CB6D600606ED1 /* AppDelegate.swift */; };
 		D05DB8C6255CB6D600606ED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8C5255CB6D600606ED1 /* SceneDelegate.swift */; };
-		D05DB8C8255CB6D600606ED1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8C7255CB6D600606ED1 /* ViewController.swift */; };
 		D05DB8CB255CB6D600606ED1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05DB8C9255CB6D600606ED1 /* Main.storyboard */; };
 		D05DB8CD255CB6D900606ED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05DB8CC255CB6D900606ED1 /* Assets.xcassets */; };
 		D05DB8D0255CB6D900606ED1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05DB8CE255CB6D900606ED1 /* LaunchScreen.storyboard */; };
@@ -29,7 +28,6 @@
 		D05DB8C0255CB6D600606ED1 /* UICollectionViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UICollectionViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05DB8C3255CB6D600606ED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D05DB8C5255CB6D600606ED1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D05DB8C7255CB6D600606ED1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D05DB8CA255CB6D600606ED1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D05DB8CC255CB6D900606ED1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D05DB8CF255CB6D900606ED1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,14 +99,13 @@
 		D05DB8C2255CB6D600606ED1 /* UICollectionViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D03DD4082562C33100DF4F29 /* Assets */,
 				D03DD4122562CC0E00DF4F29 /* Utils */,
 				D03DD40B2562C4E000DF4F29 /* Models */,
 				D05DB8D8255CB73F00606ED1 /* MainTabController.swift */,
 				D03DD4092562C3CC00DF4F29 /* FirstCollectionView */,
-				D03DD4082562C33100DF4F29 /* Assets */,
 				D05DB8C3255CB6D600606ED1 /* AppDelegate.swift */,
 				D05DB8C5255CB6D600606ED1 /* SceneDelegate.swift */,
-				D05DB8C7255CB6D600606ED1 /* ViewController.swift */,
 				D05DB8C9255CB6D600606ED1 /* Main.storyboard */,
 				D05DB8CC255CB6D900606ED1 /* Assets.xcassets */,
 				D05DB8CE255CB6D900606ED1 /* LaunchScreen.storyboard */,
@@ -190,7 +187,6 @@
 			files = (
 				D03DD4102562C78E00DF4F29 /* FirstCollectionViewCell.swift in Sources */,
 				D03DD40D2562C4EB00DF4F29 /* Photo.swift in Sources */,
-				D05DB8C8255CB6D600606ED1 /* ViewController.swift in Sources */,
 				D05DB8C4255CB6D600606ED1 /* AppDelegate.swift in Sources */,
 				D05DB8DC255CB74A00606ED1 /* FirstCollectionViewController.swift in Sources */,
 				D03DD4142562CC1E00DF4F29 /* UIView+AutoLayout.swift in Sources */,

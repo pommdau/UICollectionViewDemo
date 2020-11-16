@@ -12,7 +12,7 @@ final class FirstCollectionViewController: UICollectionViewController {
     
     // MARK: - Properties
     
-    private let reuseIdentifier = "FlickrCell"
+    private let reuseIdentifier = "FirstCollectionViewCell"
     
     // 文字通りSectionごとのInset。Cell毎の余白ではないので誤解しないように。
     // [余白を変更する](https://qiita.com/takehilo/items/d0e56f88a42fb8ed1185#%E4%BD%99%E7%99%BD%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B)

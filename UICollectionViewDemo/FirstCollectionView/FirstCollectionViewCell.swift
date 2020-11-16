@@ -29,6 +29,7 @@ class FirstCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         backgroundColor = .blue
+        initializeUI()
     }
     
     required init?(coder: NSCoder) {
@@ -44,12 +45,15 @@ class FirstCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Helpers
     
+    /// AutoLayoutの設定をinitにて行う
+    private func initializeUI() {
+        addSubview(imageView)
+//        imageView.setDimensions(width: self.frame.width, height: self.frame.width)
+        imageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+    }
+    
     private func configureUI() {
         guard let photo = photo else { return }
-        
-        addSubview(imageView)
-        imageView.setDimensions(width: self.frame.width, height: self.frame.width)
-        imageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor)
         imageView.image = photo.image
     }
 }
