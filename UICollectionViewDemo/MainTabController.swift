@@ -33,7 +33,8 @@ class MainTabController: UITabBarController {
     
     func configureViewControllers() {
         
-        let feed = FirstCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+//        let feed = FirstCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let feed = PinterestCollectionViewController(collectionViewLayout: UICollectionViewLayout())
         let nav1 = templateNavigationController(image: UIImage(named: "home_unselected"), rootViewController: feed)
         
 //        let list = ListController(style: .plain)
