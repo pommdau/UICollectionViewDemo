@@ -11,6 +11,9 @@
 		D03DD40D2562C4EB00DF4F29 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03DD40C2562C4EB00DF4F29 /* Photo.swift */; };
 		D03DD4102562C78E00DF4F29 /* FirstCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03DD40F2562C78E00DF4F29 /* FirstCollectionViewCell.swift */; };
 		D03DD4142562CC1E00DF4F29 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03DD4132562CC1E00DF4F29 /* UIView+AutoLayout.swift */; };
+		D03DD41E2563957900DF4F29 /* PinterestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03DD41D2563957900DF4F29 /* PinterestCollectionViewController.swift */; };
+		D03DD422256395A500DF4F29 /* PinterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03DD421256395A500DF4F29 /* PinterestCollectionViewCell.swift */; };
+		D03DD425256395BD00DF4F29 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03DD424256395BD00DF4F29 /* PinterestLayout.swift */; };
 		D05DB8C4255CB6D600606ED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8C3255CB6D600606ED1 /* AppDelegate.swift */; };
 		D05DB8C6255CB6D600606ED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8C5255CB6D600606ED1 /* SceneDelegate.swift */; };
 		D05DB8CB255CB6D600606ED1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05DB8C9255CB6D600606ED1 /* Main.storyboard */; };
@@ -25,6 +28,9 @@
 		D03DD40C2562C4EB00DF4F29 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		D03DD40F2562C78E00DF4F29 /* FirstCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCollectionViewCell.swift; sourceTree = "<group>"; };
 		D03DD4132562CC1E00DF4F29 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		D03DD41D2563957900DF4F29 /* PinterestCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestCollectionViewController.swift; sourceTree = "<group>"; };
+		D03DD421256395A500DF4F29 /* PinterestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestCollectionViewCell.swift; sourceTree = "<group>"; };
+		D03DD424256395BD00DF4F29 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		D05DB8C0255CB6D600606ED1 /* UICollectionViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UICollectionViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05DB8C3255CB6D600606ED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D05DB8C5255CB6D600606ED1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +86,16 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		D03DD4192562D3F100DF4F29 /* PinterestCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				D03DD41D2563957900DF4F29 /* PinterestCollectionViewController.swift */,
+				D03DD421256395A500DF4F29 /* PinterestCollectionViewCell.swift */,
+				D03DD424256395BD00DF4F29 /* PinterestLayout.swift */,
+			);
+			path = PinterestCollectionView;
+			sourceTree = "<group>";
+		};
 		D05DB8B7255CB6D600606ED1 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +120,7 @@
 				D03DD40B2562C4E000DF4F29 /* Models */,
 				D05DB8D8255CB73F00606ED1 /* MainTabController.swift */,
 				D03DD4092562C3CC00DF4F29 /* FirstCollectionView */,
+				D03DD4192562D3F100DF4F29 /* PinterestCollectionView */,
 				D05DB8C3255CB6D600606ED1 /* AppDelegate.swift */,
 				D05DB8C5255CB6D600606ED1 /* SceneDelegate.swift */,
 				D05DB8C9255CB6D600606ED1 /* Main.storyboard */,
@@ -185,9 +202,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D03DD425256395BD00DF4F29 /* PinterestLayout.swift in Sources */,
 				D03DD4102562C78E00DF4F29 /* FirstCollectionViewCell.swift in Sources */,
 				D03DD40D2562C4EB00DF4F29 /* Photo.swift in Sources */,
 				D05DB8C4255CB6D600606ED1 /* AppDelegate.swift in Sources */,
+				D03DD422256395A500DF4F29 /* PinterestCollectionViewCell.swift in Sources */,
+				D03DD41E2563957900DF4F29 /* PinterestCollectionViewController.swift in Sources */,
 				D05DB8DC255CB74A00606ED1 /* FirstCollectionViewController.swift in Sources */,
 				D03DD4142562CC1E00DF4F29 /* UIView+AutoLayout.swift in Sources */,
 				D05DB8D9255CB73F00606ED1 /* MainTabController.swift in Sources */,
