@@ -1,5 +1,5 @@
 //
-//  FirstCollectionViewCell.swift
+//  SimpleCollectionViewCell.swift
 //  UICollectionViewDemo
 //
 //  Created by HIROKI IKEUCHI on 2020/11/16.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FirstCollectionViewCell: UICollectionViewCell {
+class SimpleCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     

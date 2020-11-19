@@ -32,19 +32,15 @@ class MainTabController: UITabBarController {
     }
     
     func configureViewControllers() {
+        let simple = SimpleCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let tabIcon_01 = UIImage(systemName: "1.circle")
+        let navigation_01 = templateNavigationController(image: tabIcon_01, rootViewController: simple)
         
-//        let feed = FirstCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        let feed = PinterestCollectionViewController(collectionViewLayout: UICollectionViewLayout())
-        let nav1 = templateNavigationController(image: UIImage(named: "home_unselected"), rootViewController: feed)
-        
-//        let list = ListController(style: .plain)
-//        let nav2 = templateNavigationController(image: UIImage(named: "list_unselected"), rootViewController: list)
-//
-//        let search = SearchController(style: .plain)
-//        let nav3 = templateNavigationController(image: UIImage(named: "search_unselected"), rootViewController: search)
-        
-//        viewControllers = [nav1, nav2, nav3]
-        viewControllers = [nav1]
+        let pinterest = PinterestCollectionViewController(collectionViewLayout: UICollectionViewLayout())
+        let tabIcon_02 = UIImage(systemName: "2.circle")
+        let navigation_02 = templateNavigationController(image: tabIcon_02, rootViewController: pinterest)
+                
+        viewControllers = [navigation_01, navigation_02]
     }
 
     func templateNavigationController(image: UIImage?, rootViewController: UIViewController) -> UINavigationController {

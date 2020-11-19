@@ -1,5 +1,5 @@
 //
-//  FirstCollectionView.swift
+//  SimpleCollectionViewController.swift
 //  UICollectionViewDemo
 //
 //  Created by HIROKI IKEUCHI on 2020/11/12.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class FirstCollectionViewController: UICollectionViewController {
+final class SimpleCollectionViewController: UICollectionViewController {
     
     // MARK: - Properties
     
-    private let reuseIdentifier = "FirstCollectionViewCell"
+    private let reuseIdentifier = "SimpleCollectionViewCell"
     
     // 文字通りSectionごとのInset。Cell毎の余白ではないので誤解しないように。
     // [余白を変更する](https://qiita.com/takehilo/items/d0e56f88a42fb8ed1185#%E4%BD%99%E7%99%BD%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B)
@@ -34,14 +34,14 @@ final class FirstCollectionViewController: UICollectionViewController {
     private func configureUI() {
         view.backgroundColor = .purple  // CollectionViewにより見えない
         collectionView.backgroundColor = .darkGray
-        collectionView.register(FirstCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(SimpleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
 }
 
 // MARK: - UICollectionViewDataSource
 
-extension FirstCollectionViewController {
+extension SimpleCollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -58,7 +58,7 @@ extension FirstCollectionViewController {
     ) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                      for: indexPath) as! FirstCollectionViewCell
+                                                      for: indexPath) as! SimpleCollectionViewCell
         cell.photo = photos[indexPath.row]
         return cell
     }
@@ -66,7 +66,7 @@ extension FirstCollectionViewController {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension FirstCollectionViewController : UICollectionViewDelegateFlowLayout {
+extension SimpleCollectionViewController : UICollectionViewDelegateFlowLayout {
     
     // セルのサイズを指定する
     // 結果としてセル毎の間隔を規定していることになる
