@@ -65,78 +65,90 @@ extension AlbumCollectionViewController {
         }
         
         // load our initial data
+        // ポイントは、スナップショットをdataSourceに使用していること
         let snapshot = snapshotForCurrentState()
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     func generateLayout() -> UICollectionViewLayout {
-        // We have three row styles
-        // Style 1: 'Full'
-        // A full width photo
-        // Style 2: 'Main with pair'
-        // A 2/3 width photo with two 1/3 width photos stacked vertically
-        // Style 3: 'Triplet'
-        // Three 1/3 width photos stacked horizontally
-        
-        // Full
+
+        // ①: First type. Full
         let fullPhotoItem = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalWidth(2/3)))
+          layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                             heightDimension: .fractionalWidth(2/3))
+        )
+        // 各写真周りの余白を設定する
         fullPhotoItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
         
-        // Main with pair
+        // ②: Second type: Main with pair
+        // メインの写真は、幅はグループ幅の2/3、高さは1/3
         let mainItem = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(2/3),
-                heightDimension: .fractionalHeight(1.0)))
+          layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(2/3),
+                                             heightDimension: .fractionalHeight(1.0))
+        )
         mainItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-        
+        // メイン写真の後続に、縦に2枚の写真を重ねたものを配置する
         let pairItem = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(0.5)))
+          layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                             heightDimension: .fractionalHeight(0.5))  // 縦に積むので1/2ってことかな
+        )
         pairItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
         let trailingGroup = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1/3),
-                heightDimension: .fractionalHeight(1.0)),
-            subitem: pairItem,
-            count: 2)
+          layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),  // スタックの幅は1/3（mainWithPairGroupから見て）
+                                             heightDimension: .fractionalHeight(1.0)),
+          subitem: pairItem,
+          count: 2)
         
+        // 最終的なグループ
+        // class NSCollectionLayoutGroup: NSCollectionLayoutItem
+        // widthは幅いっぱいの1.0
+        // 写真の高さは2/3で、さらにメインの写真の高さは2/3なので、合計2/3*2/3=4/9の高さにする必要がある
+        // →2/3にすると写真は正方形表示になってしまう
         let mainWithPairGroup = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalWidth(4/9)),
-            subitems: [mainItem, trailingGroup])
+          layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                             heightDimension: .fractionalWidth(4/9)),
+                                             subitems: [mainItem, trailingGroup])
         
-        // Triplet
+        // ③: Third type. Triplet
         let tripletItem = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1/3),
-                heightDimension: .fractionalHeight(1.0)))
-        tripletItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-        
+          layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1/3),  // tripletGroupからみて幅1/3
+            heightDimension: .fractionalHeight(1.0)))  // tripletGroupからみて高さはそのまま
+
+        tripletItem.contentInsets = NSDirectionalEdgeInsets(top: 2,leading: 2,bottom: 2,trailing: 2)
+
         let tripletGroup = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalWidth(2/9)),
-            subitems: [tripletItem, tripletItem, tripletItem])
+          layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(2/9)),  // 2/3 * 1/3 = 2/9
+          subitems: [tripletItem, tripletItem, tripletItem])
+
         
-        // Reversed main with pair
+        // ④: Fourth type. Reversed main with pair
         let mainWithPairReversedGroup = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalWidth(4/9)),
-            subitems: [trailingGroup, mainItem])
+          layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(4/9)),
+          subitems: [trailingGroup, mainItem])
         
+        // ①-④のスタックを作成する
         let nestedGroup = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalWidth(16/9)),
-            subitems: [fullPhotoItem, mainWithPairGroup, tripletGroup, mainWithPairReversedGroup])
+          layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(16/9)),  // ①-④の高さ = 2/3 + 4/9 + 2/9 + 4/9 = 16/9
+          subitems: [
+            fullPhotoItem,
+            mainWithPairGroup,
+            tripletGroup,
+            mainWithPairReversedGroup
+          ]
+        )
         
+        // NSCollectionLayoutSection: セクションを表すクラス
+        // 最終的に作成したNSCollectionLayoutGroupを適用する
         let section = NSCollectionLayoutSection(group: nestedGroup)
+        
+        // 最終的にレンダリングされる単位になります。
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
