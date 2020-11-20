@@ -32,6 +32,7 @@ class MainTabController: UITabBarController {
     }
     
     func configureViewControllers() {
+    
         let simple = SimpleCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
         let tabIcon_01 = UIImage(systemName: "1.circle")
         let navigation_01 = templateNavigationController(image: tabIcon_01, rootViewController: simple)
@@ -39,8 +40,12 @@ class MainTabController: UITabBarController {
         let pinterest = PinterestCollectionViewController(collectionViewLayout: UICollectionViewLayout())
         let tabIcon_02 = UIImage(systemName: "2.circle")
         let navigation_02 = templateNavigationController(image: tabIcon_02, rootViewController: pinterest)
-                
-        viewControllers = [navigation_01, navigation_02]
+    
+        let album = AlbumCollectionViewController(nibName: nil, bundle: nil)
+        let tabIcon_03 = UIImage(systemName: "3.circle")
+        let navigation_03 = templateNavigationController(image: tabIcon_03, rootViewController: album)
+        
+        viewControllers = [navigation_03, navigation_01, navigation_02]
     }
 
     func templateNavigationController(image: UIImage?, rootViewController: UIViewController) -> UINavigationController {
