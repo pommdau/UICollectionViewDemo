@@ -23,6 +23,7 @@
 		D05DB8D0255CB6D900606ED1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05DB8CE255CB6D900606ED1 /* LaunchScreen.storyboard */; };
 		D05DB8D9255CB73F00606ED1 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8D8255CB73F00606ED1 /* MainTabController.swift */; };
 		D05DB8DC255CB74A00606ED1 /* SimpleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8DB255CB74A00606ED1 /* SimpleCollectionViewController.swift */; };
+		D0D645CA257BC0A5000A2985 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D645C9257BC0A5000A2985 /* Tweet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		D05DB8D1255CB6D900606ED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D05DB8D8255CB73F00606ED1 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		D05DB8DB255CB74A00606ED1 /* SimpleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewController.swift; sourceTree = "<group>"; };
+		D0D645C9257BC0A5000A2985 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				D03DD40C2562C4EB00DF4F29 /* Photo.swift */,
+				D0D645C9257BC0A5000A2985 /* Tweet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				D03DD4102562C78E00DF4F29 /* SimpleCollectionViewCell.swift in Sources */,
 				D03DD40D2562C4EB00DF4F29 /* Photo.swift in Sources */,
 				D05DB8C4255CB6D600606ED1 /* AppDelegate.swift in Sources */,
+				D0D645CA257BC0A5000A2985 /* Tweet.swift in Sources */,
 				D03DD422256395A500DF4F29 /* PinterestCollectionViewCell.swift in Sources */,
 				D03DD41E2563957900DF4F29 /* PinterestCollectionViewController.swift in Sources */,
 				D05DB8DC255CB74A00606ED1 /* SimpleCollectionViewController.swift in Sources */,
