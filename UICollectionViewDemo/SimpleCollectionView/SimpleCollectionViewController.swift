@@ -4,7 +4,7 @@
 //
 //  Created by HIROKI IKEUCHI on 2020/11/12.
 //
-// Reference: https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
+//  Reference: https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
 
 import UIKit
 

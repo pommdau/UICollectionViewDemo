@@ -24,6 +24,7 @@
 		D05DB8D9255CB73F00606ED1 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8D8255CB73F00606ED1 /* MainTabController.swift */; };
 		D05DB8DC255CB74A00606ED1 /* SimpleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8DB255CB74A00606ED1 /* SimpleCollectionViewController.swift */; };
 		D0D645CA257BC0A5000A2985 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D645C9257BC0A5000A2985 /* Tweet.swift */; };
+		D0D645CF257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D645CE257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		D05DB8D8255CB73F00606ED1 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		D05DB8DB255CB74A00606ED1 /* SimpleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewController.swift; sourceTree = "<group>"; };
 		D0D645C9257BC0A5000A2985 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		D0D645CE257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDatasourceCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				D05DB8D8255CB73F00606ED1 /* MainTabController.swift */,
 				D03DD4092562C3CC00DF4F29 /* SimpleCollectionView */,
 				D03DD4192562D3F100DF4F29 /* PinterestCollectionView */,
+				D0D645CD257CC7F8000A2985 /* DiffableDatasourceDemo */,
 				D0087EC42566B61900FABC22 /* UICollectionViewCompositionalLayout */,
 				D05DB8C3255CB6D600606ED1 /* AppDelegate.swift */,
 				D05DB8C5255CB6D600606ED1 /* SceneDelegate.swift */,
@@ -146,6 +149,14 @@
 				D05DB8D1255CB6D900606ED1 /* Info.plist */,
 			);
 			path = UICollectionViewDemo;
+			sourceTree = "<group>";
+		};
+		D0D645CD257CC7F8000A2985 /* DiffableDatasourceDemo */ = {
+			isa = PBXGroup;
+			children = (
+				D0D645CE257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift */,
+			);
+			path = DiffableDatasourceDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +236,7 @@
 				D03DD40D2562C4EB00DF4F29 /* Photo.swift in Sources */,
 				D05DB8C4255CB6D600606ED1 /* AppDelegate.swift in Sources */,
 				D0D645CA257BC0A5000A2985 /* Tweet.swift in Sources */,
+				D0D645CF257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift in Sources */,
 				D03DD422256395A500DF4F29 /* PinterestCollectionViewCell.swift in Sources */,
 				D03DD41E2563957900DF4F29 /* PinterestCollectionViewController.swift in Sources */,
 				D05DB8DC255CB74A00606ED1 /* SimpleCollectionViewController.swift in Sources */,
