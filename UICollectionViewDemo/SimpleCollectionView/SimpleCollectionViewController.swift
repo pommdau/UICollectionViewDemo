@@ -12,8 +12,6 @@ final class SimpleCollectionViewController: UICollectionViewController {
     
     // MARK: - Properties
     
-    private let reuseIdentifier = "SimpleCollectionViewCell"
-    
     // 文字通りSectionごとのInset。Cell毎の余白ではないので誤解しないように。
     // [余白を変更する](https://qiita.com/takehilo/items/d0e56f88a42fb8ed1185#%E4%BD%99%E7%99%BD%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B)
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
@@ -34,7 +32,8 @@ final class SimpleCollectionViewController: UICollectionViewController {
     private func configureUI() {
         view.backgroundColor = .purple  // CollectionViewにより見えない
         collectionView.backgroundColor = .darkGray
-        collectionView.register(SimpleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(SimpleCollectionViewCell.self,
+                                forCellWithReuseIdentifier: SimpleCollectionViewCell.reuseIdentifer)
     }
     
 }
@@ -57,8 +56,9 @@ extension SimpleCollectionViewController {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                      for: indexPath) as! SimpleCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: SimpleCollectionViewCell.reuseIdentifer,
+            for: indexPath) as! SimpleCollectionViewCell
         cell.tweet = tweets[indexPath.row]
         return cell
     }

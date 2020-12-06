@@ -11,6 +11,8 @@ class SimpleCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    static let reuseIdentifer = "simple-collectionview-cell-reuse-identifier"
+    
     var tweet: Tweet? {
         didSet { configureUI() }
     }
