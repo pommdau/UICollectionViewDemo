@@ -45,7 +45,11 @@ class MainTabController: UITabBarController {
         let tabIcon_03 = UIImage(systemName: "3.circle")
         let navigation_03 = templateNavigationController(image: tabIcon_03, rootViewController: album)
         
-        viewControllers = [navigation_03, navigation_01, navigation_02]
+        let diffable = DiffableDatasourceCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let tabIcon_04 = UIImage(systemName: "4.circle")
+        let navigation_04 = templateNavigationController(image: tabIcon_04, rootViewController: diffable)
+        
+        viewControllers = [navigation_04, navigation_01, navigation_02, navigation_03]
     }
 
     func templateNavigationController(image: UIImage?, rootViewController: UIViewController) -> UINavigationController {
