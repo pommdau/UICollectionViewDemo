@@ -24,14 +24,16 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
     private var tweets = Tweet.demoTweets()
     
     // 文字通りSectionごとのInset
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
     private let itemsPerRow: CGFloat = 5
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+        view.backgroundColor = .purple  // CollectionViewにより見えない
+        
+        configureCollectionView()
         configureNavigationBar()
         applySnapshot(animationgDifferences: false)
     }
@@ -39,14 +41,15 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
     // MARK: - Selectors
     
     @objc func handleRandomDeletion() {
+        guard 0 < tweets.count else { return }
+        
         tweets.remove(at: Int.random(in: 0..<tweets.count))
         applySnapshot()
     }
     
     // MARK: - Helpers
     
-    private func configureUI() {
-        view.backgroundColor = .purple  // CollectionViewにより見えない
+    private func configureCollectionView() {
         collectionView.backgroundColor = .darkGray
         collectionView.register(SimpleCollectionViewCell.self,
                                 forCellWithReuseIdentifier: SimpleCollectionViewCell.reuseIdentifer)
