@@ -27,7 +27,7 @@ class User: Hashable {
 }
 
 extension User {
-    static var allSections: [User] =  [
+    static var allUsers: [User] =  [
         User(userName: "Taro",
                 tweets: Tweet.demoTweets()),
         User(userName: "Jiro",

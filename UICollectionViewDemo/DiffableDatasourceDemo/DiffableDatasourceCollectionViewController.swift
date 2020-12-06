@@ -11,13 +11,13 @@ import UIKit
 
 final class DiffableDatasourceCollectionViewController: UICollectionViewController {
     
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Tweet>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Tweet>
+    typealias DataSource = UICollectionViewDiffableDataSource<User, Tweet>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<User, Tweet>
     
     // MARK: - Properties
     
     private lazy var dataSource = makeDataSource()
-    private var sections = Section.allSections
+    private var sections = User.allUsers
     
     // 文字通りSectionごとのInset
     private let sectionInsets = UIEdgeInsets(top: 20.0, left: 5.0, bottom: 20.0, right: 5.0)
