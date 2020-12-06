@@ -11,7 +11,9 @@ class SimpleCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    var photo: Photo? {
+    static let reuseIdentifer = "simple-collectionview-cell-reuse-identifier"
+    
+    var tweet: Tweet? {
         didSet { configureUI() }
     }
     
@@ -53,7 +55,7 @@ class SimpleCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureUI() {
-        guard let photo = photo else { return }
-        imageView.image = photo.image
+        guard let tweet = tweet else { return }
+        imageView.image = tweet.images[0]
     }
 }

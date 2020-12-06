@@ -18,10 +18,10 @@ struct Tweet: Hashable {
     
     // MARK: - Lifecycle
     
-    // MARK: - Selectors
-    
     // MARK: - Helpers
 }
+
+// MARK: - Static Methods
 
 extension Tweet {
     
