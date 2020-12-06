@@ -25,6 +25,7 @@
 		D05DB8DC255CB74A00606ED1 /* SimpleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8DB255CB74A00606ED1 /* SimpleCollectionViewController.swift */; };
 		D0D645CA257BC0A5000A2985 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D645C9257BC0A5000A2985 /* Tweet.swift */; };
 		D0D645CF257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D645CE257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift */; };
+		D0D645D9257D1534000A2985 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D645D8257D1534000A2985 /* Section.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		D05DB8DB255CB74A00606ED1 /* SimpleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewController.swift; sourceTree = "<group>"; };
 		D0D645C9257BC0A5000A2985 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		D0D645CE257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDatasourceCollectionViewController.swift; sourceTree = "<group>"; };
+		D0D645D8257D1534000A2985 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				D0D645CE257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift */,
+				D0D645D8257D1534000A2985 /* Section.swift */,
 			);
 			path = DiffableDatasourceDemo;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0D645D9257D1534000A2985 /* Section.swift in Sources */,
 				D0087ECB25678C1500FABC22 /* AlbumCollectionViewCell.swift in Sources */,
 				D03DD425256395BD00DF4F29 /* PinterestLayout.swift in Sources */,
 				D03DD4102562C78E00DF4F29 /* SimpleCollectionViewCell.swift in Sources */,

@@ -11,20 +11,16 @@ import UIKit
 
 final class DiffableDatasourceCollectionViewController: UICollectionViewController {
     
-    enum Section {
-        case main
-    }
-    
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Tweet>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Tweet>
     
     // MARK: - Properties
     
     private lazy var dataSource = makeDataSource()
-    private var tweets = Tweet.demoTweets()
+    private var sections = Section.allSections
     
     // 文字通りSectionごとのInset
-    private let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
+    private let sectionInsets = UIEdgeInsets(top: 20.0, left: 5.0, bottom: 20.0, right: 5.0)
     private let itemsPerRow: CGFloat = 5
     
     // MARK: - Lifecycle
@@ -41,9 +37,9 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
     // MARK: - Selectors
     
     @objc func handleRandomDeletion() {
-        guard 0 < tweets.count else { return }
+        guard 0 < sections.count else { return }
         
-        tweets.remove(at: Int.random(in: 0..<tweets.count))
+        sections.remove(at: Int.random(in: 0..<sections.count))
         applySnapshot()
     }
     
@@ -71,10 +67,12 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
     }
     
     func applySnapshot(animationgDifferences: Bool = true) {
-      var snapshot = Snapshot()
-      snapshot.appendSections([.main])
-      snapshot.appendItems(tweets)
-      dataSource.apply(snapshot, animatingDifferences: animationgDifferences)
+        var snapshot = Snapshot()
+        snapshot.appendSections(sections)
+        sections.forEach{ section in
+            snapshot.appendItems(section.tweets, toSection: section)
+        }
+        dataSource.apply(snapshot, animatingDifferences: animationgDifferences)
     }
 }
 
@@ -116,7 +114,6 @@ extension DiffableDatasourceCollectionViewController : UICollectionViewDelegateF
             """
 *****
 id: \(tweet.id)
-user: \(tweet.userName)
 text: \(tweet.text)
 number of medias: \(tweet.images.count)
 """)

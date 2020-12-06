@@ -102,7 +102,6 @@ extension SimpleCollectionViewController : UICollectionViewDelegateFlowLayout {
             """
 *****
 id: \(tweet.id)
-user: \(tweet.userName)
 text: \(tweet.text)
 number of medias: \(tweet.images.count)
 """)

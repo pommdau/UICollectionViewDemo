@@ -12,7 +12,6 @@ struct Tweet: Hashable {
     // MARK: - Properties
     
     var id = UUID().uuidString
-    var userName : String
     var text     : String
     var images   : [UIImage]
     
@@ -28,7 +27,7 @@ extension Tweet {
     static func demoTweets() -> [Tweet] {
         var tweets = [Tweet]()
         
-        for _ in 0...30 {
+        for _ in 0...10 {
             tweets.append(Tweet.randomTweet())
         }
         
@@ -36,7 +35,7 @@ extension Tweet {
     }
     
     static func randomTweet() -> Tweet {
-        return Tweet(userName: randomUserName(), text: randomText(), images: randomImages())
+        return Tweet(text: randomText(), images: randomImages())
     }
     
     private static func randomUserName() -> String {
