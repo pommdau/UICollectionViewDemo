@@ -48,7 +48,7 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
     // MARK: - Helpers
     
     private func configureCollectionView() {
-        collectionView.backgroundColor = .darkGray
+        collectionView.backgroundColor = .systemGreen
         collectionView.register(SimpleCollectionViewCell.self,
                                 forCellWithReuseIdentifier: SimpleCollectionViewCell.reuseIdentifer)
         collectionView.collectionViewLayout = generateLayout()
@@ -88,25 +88,26 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
             if numberOfTweets == 0 { numberOfTweets += 1 }
             let columns = numberOfTweets
             
-            // DEBUGGING...
-            // ②: Second type: Main with pair
-            // メインの写真は、幅はグループ幅の2/3、高さは1/3
+
+            // 4枚の写真を並べる場合の例
             let mainItem = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .fractionalHeight(0.5))
+                                                   heightDimension: .fractionalHeight(1/3))  // 1/3
             )
             mainItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+            
             // メイン写真の後続に、縦に2枚の写真を重ねたものを配置する
-            let pairItem = NSCollectionLayoutItem(
-              layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
-                                                 heightDimension: .fractionalHeight(0.5))  // 縦に積むので1/2ってことかな
+            let middleItem = NSCollectionLayoutItem(
+              layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2),  // 中央に2枚を平行に並べる
+                                                 heightDimension: .fractionalHeight(1.0))
             )
-            pairItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+            middleItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+            
             let trailingGroup = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .fractionalHeight(0.5)),  // mainItemと合算して1.0になるように
-                subitem: pairItem,
-                count: 3)
+                                                   heightDimension: .fractionalHeight(1/3)),
+                subitem: middleItem,
+                count: 2)
             
             // 最終的なグループ
             // class NSCollectionLayoutGroup: NSCollectionLayoutItem
@@ -114,9 +115,9 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
             // 写真の高さは2/3で、さらにメインの写真の高さは2/3なので、合計2/3*2/3=4/9の高さにする必要がある
             // →2/3にすると写真は正方形表示になってしまう
             let mainWithPairGroup = NSCollectionLayoutGroup.vertical(
-              layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+              layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  // 1:1の正方形に画像を収める
                                                  heightDimension: .fractionalWidth(1.0)),
-                                                 subitems: [mainItem, trailingGroup])
+                                                 subitems: [mainItem, trailingGroup, mainItem])
             let section = NSCollectionLayoutSection(group: mainWithPairGroup)
             
             
