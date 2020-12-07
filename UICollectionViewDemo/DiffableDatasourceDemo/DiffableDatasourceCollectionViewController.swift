@@ -12,11 +12,13 @@ import UIKit
 final class DiffableDatasourceCollectionViewController: UICollectionViewController {
     
     typealias DataSource = UICollectionViewDiffableDataSource<User, Tweet>
+    // NSDiffableDataSourceSnapshot: diffable-data-sourceが、
+    // 表示するセクションとセルの数の情報を参照するためのクラス
     typealias Snapshot = NSDiffableDataSourceSnapshot<User, Tweet>
     
     // MARK: - Properties
     
-    private lazy var dataSource = makeDataSource()
+    private lazy var dataSource = makeDataSource()  // lazy: ViewControllerの初期化後に呼ぶ必要があるため
     private var sections = User.allUsers
     
     // 文字通りSectionごとのInset
@@ -40,7 +42,7 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
         guard 0 < sections.count else { return }
         
         sections.remove(at: Int.random(in: 0..<sections.count))
-        applySnapshot()
+        applySnapshot()  // collectoinViewの更新を行う
     }
     
     // MARK: - Helpers
@@ -68,10 +70,11 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
     
     func applySnapshot(animationgDifferences: Bool = true) {
         var snapshot = Snapshot()
-        snapshot.appendSections(sections)
+        snapshot.appendSections(sections)  // セクション情報を伝える
         sections.forEach{ section in
             snapshot.appendItems(section.tweets, toSection: section)
         }
+        // dataSouceに最新のsnapshotのことを伝えて更新する
         dataSource.apply(snapshot, animatingDifferences: animationgDifferences)
     }
 }
@@ -107,6 +110,7 @@ extension DiffableDatasourceCollectionViewController : UICollectionViewDelegateF
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // such as "collectionView(_:cellForItemAt:)"
         guard let cell = collectionView.cellForItem(at: indexPath) as? SimpleCollectionViewCell,
               let tweet = cell.tweet
               else { return }
