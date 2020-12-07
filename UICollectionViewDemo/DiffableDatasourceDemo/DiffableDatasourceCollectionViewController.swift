@@ -51,6 +51,7 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
         collectionView.backgroundColor = .darkGray
         collectionView.register(SimpleCollectionViewCell.self,
                                 forCellWithReuseIdentifier: SimpleCollectionViewCell.reuseIdentifer)
+        collectionView.collectionViewLayout = generateLayout()
     }
     
     func configureNavigationBar() {
@@ -77,37 +78,43 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
         // dataSouceに最新のsnapshotのことを伝えて更新する
         dataSource.apply(snapshot, animatingDifferences: animationgDifferences)
     }
+    
+    func generateLayout() -> UICollectionViewLayout {
+        
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
+                                                            layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            var numberOfTweets = self.sections[sectionIndex].tweets.count
+            if numberOfTweets == 0 { numberOfTweets += 1 }
+            let columns = numberOfTweets
+            
+            // The `group` auto-calculates the actual item width to make
+            // the requested number of `columns` fit, so this `widthDimension` will be ignored.
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                  heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+            
+            let groupHeight = columns == 1 ?
+                NSCollectionLayoutDimension.fractionalWidth(1.0) :
+                NSCollectionLayoutDimension.fractionalWidth(0.2)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: groupHeight)
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                           subitem: item,
+                                                           count: columns)
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+            return section
+        }
+        return layout
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension DiffableDatasourceCollectionViewController : UICollectionViewDelegateFlowLayout {
-    
-    // セルのサイズを指定する
-    // 結果としてセル毎の間隔を規定していることになる
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
-        
-        return CGSize(width: widthPerItem, height: widthPerItem)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    
-    // Rowの間隔
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
-    }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // such as "collectionView(_:cellForItemAt:)"
