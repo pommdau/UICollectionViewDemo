@@ -81,46 +81,18 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
     
     func generateLayout() -> UICollectionViewLayout {
         
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
+        let layout = UICollectionViewCompositionalLayout { [self] (sectionIndex: Int,
                                                             layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             
             var numberOfTweets = self.sections[sectionIndex].tweets.count
             if numberOfTweets == 0 { numberOfTweets += 1 }
             let columns = numberOfTweets
             
-
-            // 4枚の写真を並べる場合の例
-            let mainItem = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .fractionalHeight(1/3))  // 1/3
-            )
-            mainItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-            
-            // メイン写真の後続に、縦に2枚の写真を重ねたものを配置する
-            let middleItem = NSCollectionLayoutItem(
-              layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2),  // 中央に2枚を平行に並べる
-                                                 heightDimension: .fractionalHeight(1.0))
-            )
-            middleItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-            
-            let trailingGroup = NSCollectionLayoutGroup.horizontal(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .fractionalHeight(1/3)),
-                subitem: middleItem,
-                count: 2)
-            
-            // 最終的なグループ
-            // class NSCollectionLayoutGroup: NSCollectionLayoutItem
-            // widthは幅いっぱいの1.0
-            // 写真の高さは2/3で、さらにメインの写真の高さは2/3なので、合計2/3*2/3=4/9の高さにする必要がある
-            // →2/3にすると写真は正方形表示になってしまう
-            let mainWithPairGroup = NSCollectionLayoutGroup.vertical(
-              layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  // 1:1の正方形に画像を収める
-                                                 heightDimension: .fractionalWidth(1.0)),
-                                                 subitems: [mainItem, trailingGroup, mainItem])
-            let section = NSCollectionLayoutSection(group: mainWithPairGroup)
             
             
+            
+            
+            let section = NSCollectionLayoutSection(group: myCollectionLayoutGroup())
             
 //            // The `group` auto-calculates the actual item width to make
 //            // the requested number of `columns` fit, so this `widthDimension` will be ignored.
@@ -143,6 +115,41 @@ final class DiffableDatasourceCollectionViewController: UICollectionViewControll
         }
         return layout
     }
+    
+    func myCollectionLayoutGroup() -> NSCollectionLayoutGroup {
+        // 4枚の写真を並べる場合の例
+        let mainItem = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .fractionalHeight(1/3))  // 1/3
+        )
+        mainItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+        
+        // メイン写真の後続に、縦に2枚の写真を重ねたものを配置する
+        let middleItem = NSCollectionLayoutItem(
+          layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2),  // 中央に2枚を平行に並べる
+                                             heightDimension: .fractionalHeight(1.0))
+        )
+        middleItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+        
+        let trailingGroup = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .fractionalHeight(1/3)),
+            subitem: middleItem,
+            count: 2)
+        
+        // 最終的なグループ
+        // class NSCollectionLayoutGroup: NSCollectionLayoutItem
+        // widthは幅いっぱいの1.0
+        // 写真の高さは2/3で、さらにメインの写真の高さは2/3なので、合計2/3*2/3=4/9の高さにする必要がある
+        // →2/3にすると写真は正方形表示になってしまう
+        let mainWithPairGroup = NSCollectionLayoutGroup.vertical(
+          layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  // 1:1の正方形に画像を収める
+                                             heightDimension: .fractionalWidth(1.0)),
+                                             subitems: [mainItem, trailingGroup, mainItem])
+        
+        return mainWithPairGroup
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

@@ -35,7 +35,7 @@ extension Tweet {
     }
     
     static func randomTweet() -> Tweet {
-        return Tweet(text: randomText(), images: randomImages())
+        return Tweet(text: randomText(), images: randomImages(numberOfImages: 4))
     }
     
     private static func randomUserName() -> String {
@@ -59,9 +59,9 @@ extension Tweet {
         return textList[Int.random(in: 0...textList.count - 1)]
     }
     
-    private static func randomImages() -> [UIImage] {
+    private static func randomImages(numberOfImages: Int = 0) -> [UIImage] {
         let imageList      = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13"]
-        let numberOfImages = Int.random(in: 1...4)
+        let numberOfImages = 0 < numberOfImages ? numberOfImages : Int.random(in: 1...4)
         var imageIndexes   = [Int]()
         
         while imageIndexes.count < numberOfImages  {
