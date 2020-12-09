@@ -25,9 +25,9 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
     private lazy var dataSource = makeDataSource()  // lazy: ViewControllerの初期化後に呼ぶ必要があるため
     private var tweets = Tweet.demoTweets()
     
-    // 文字通りSectionごとのInset
-    private let sectionInsets = UIEdgeInsets(top: 20.0, left: 5.0, bottom: 20.0, right: 5.0)
-    private let imageInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+    private let imageInsetsConstant: CGFloat = 2
+    private lazy var imageInsets = NSDirectionalEdgeInsets(top: imageInsetsConstant, leading: imageInsetsConstant,
+                                                      bottom: imageInsetsConstant, trailing: imageInsetsConstant)
     private let itemsPerRow: CGFloat = 5
     
     // MARK: - Lifecycle
