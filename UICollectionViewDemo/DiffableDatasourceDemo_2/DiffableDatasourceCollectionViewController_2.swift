@@ -27,6 +27,7 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
     
     // 文字通りSectionごとのInset
     private let sectionInsets = UIEdgeInsets(top: 20.0, left: 5.0, bottom: 20.0, right: 5.0)
+    private let imageInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
     private let itemsPerRow: CGFloat = 5
     
     // MARK: - Lifecycle
@@ -100,14 +101,14 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(1/3))  // 最終的なtweetLayoutの高さの1/3
         )
-        uppertItem.contentInsets = directionalEdgeInsets()
+        uppertItem.contentInsets = imageInsets
         
         // 真ん中に2枚を並べる
         let middleItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2),  // 中央に2枚を平行に並べる。middleItemsGroupの高さの1/2
                                              heightDimension: .fractionalHeight(1.0))
         )
-        middleItem.contentInsets = directionalEdgeInsets()
+        middleItem.contentInsets = imageInsets
         
         let middleItemsGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -119,7 +120,7 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(1/3))  // 1/3
         )
-        bottomItem.contentInsets = directionalEdgeInsets()
+        bottomItem.contentInsets = imageInsets
                                    
         
         // 最終的なグループ
@@ -133,11 +134,6 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
                                              subitems: [uppertItem, middleItemsGroup, bottomItem])
         
         return tweetGroup
-    }
-    
-    func directionalEdgeInsets(withDistance distance: CGFloat = 2) -> NSDirectionalEdgeInsets {
-        return NSDirectionalEdgeInsets(top: distance, leading: distance,
-                                       bottom: distance, trailing: distance)
     }
     
 }
