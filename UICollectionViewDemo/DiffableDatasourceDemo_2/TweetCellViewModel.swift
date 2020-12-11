@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 struct TweetCellViewModel {
     
     // MARK: - Properties
@@ -24,11 +25,16 @@ struct TweetCellViewModel {
     
     // MARK: - Helpers
     
-    func calculateImageSizes(withCellWidth width: CGFloat) -> [CGSize] {
+    func calculateImageSizes(withCellWidth width: CGFloat) -> TweetCellImageSizes {
         let size0     = calculateImageSize(withImage: tweet.images[0], width: width)
         let size1and2 = calculateTwoImageSizes(withImages: [tweet.images[1], tweet.images[2]], width: width)
         let size3     = calculateImageSize(withImage: tweet.images[3], width: width)
-        return [size0, size1and2[0], size1and2[1], size3]
+        
+        return TweetCellImageSizes(sizeOfFirstImage: size0,
+                                   sizeOfSecondImage: size1and2[0],
+                                   sizeOfThirdImage: size1and2[1],
+                                   sizeOfFourthImage: size3,
+                                   heightOfCell: size0.height + size1and2[0].height + size3.height)
     }
     
     

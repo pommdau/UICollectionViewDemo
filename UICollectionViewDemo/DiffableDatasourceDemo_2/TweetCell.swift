@@ -112,7 +112,7 @@ class TweetCell: UICollectionViewCell {
         addSubview(mediaImageView_03)
         addSubview(mediaImageView_04)
         
-        var imageSizes: [CGSize] = [.zero, .zero, .zero, .zero]
+        var imageSizes = TweetCellImageSizes()
         
         switch tweet.images.count {
         case 1:
@@ -125,25 +125,22 @@ class TweetCell: UICollectionViewCell {
             let viewModel = TweetCellViewModel(tweet: tweet)
             imageSizes = viewModel.calculateImageSizes(withCellWidth: self.frame.width)
             
-            mediaImageView_01.anchor(top: topAnchor, left: leftAnchor,
-                                     right: rightAnchor)
+            mediaImageView_01.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor)
             mediaImageView_02.anchor(top: mediaImageView_01.bottomAnchor, left: leftAnchor)
-            mediaImageView_03.anchor(top: mediaImageView_01.bottomAnchor, left: mediaImageView_02.rightAnchor,
-                                     right: rightAnchor)
-            mediaImageView_04.anchor(top: mediaImageView_02.bottomAnchor, left: leftAnchor,
-                                     right: rightAnchor)
+            mediaImageView_03.anchor(top: mediaImageView_01.bottomAnchor, left: mediaImageView_02.rightAnchor, right: rightAnchor)
+            mediaImageView_04.anchor(top: mediaImageView_02.bottomAnchor, left: leftAnchor, right: rightAnchor)
         default:
             break
         }
         
-        mediaImageView_01.setDimensions(width: imageSizes[0].width,
-                                        height: imageSizes[0].height)
-        mediaImageView_02.setDimensions(width: imageSizes[1].width,
-                                        height: imageSizes[1].height)
-        mediaImageView_03.setDimensions(width: imageSizes[2].width,
-                                        height: imageSizes[2].height)
-        mediaImageView_04.setDimensions(width: imageSizes[3].width,
-                                        height: imageSizes[3].height)
+        mediaImageView_01.setDimensions(width: imageSizes.sizeOfFirstImage.width,
+                                        height: imageSizes.sizeOfFirstImage.height)
+        mediaImageView_02.setDimensions(width: imageSizes.sizeOfSecondImage.width,
+                                        height: imageSizes.sizeOfSecondImage.height)
+        mediaImageView_03.setDimensions(width: imageSizes.sizeOfThirdImage.width,
+                                        height: imageSizes.sizeOfThirdImage.height)
+        mediaImageView_04.setDimensions(width: imageSizes.sizeOfThirdImage.width,
+                                        height: imageSizes.sizeOfThirdImage.height)
         
         configureImageViewContent()
     }
