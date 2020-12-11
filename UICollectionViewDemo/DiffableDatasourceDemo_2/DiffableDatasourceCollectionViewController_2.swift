@@ -54,8 +54,8 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
     
     private func configureCollectionView() {
         collectionView.backgroundColor = .systemGreen
-        collectionView.register(SimpleCollectionViewCell.self,
-                                forCellWithReuseIdentifier: SimpleCollectionViewCell.reuseIdentifer)
+        collectionView.register(TweetCell.self,
+                                forCellWithReuseIdentifier: TweetCell.reuseIdentifer)
         collectionView.collectionViewLayout = generateLayout()
     }
     
@@ -65,8 +65,8 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
     
     func makeDataSource() -> DataSource {
       let dataSource = DataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, tweet) -> UICollectionViewCell? in
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SimpleCollectionViewCell.reuseIdentifer,
-                                                      for: indexPath) as? SimpleCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TweetCell.reuseIdentifer,
+                                                      for: indexPath) as? TweetCell
         cell?.tweet = tweet
         return cell
       })
@@ -109,17 +109,25 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
         uppertItem.contentInsets = imageInsets
         
         // 真ん中に2枚を並べる
-        let middleItem = NSCollectionLayoutItem(
-          layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2),  // 中央に2枚を平行に並べる。middleItemsGroupの高さの1/2
-                                             heightDimension: .fractionalHeight(1.0))
+        let middleItem_01 = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(imageSizes[1].width),  // 中央に2枚を平行に並べる。middleItemsGroupの高さの1/2
+                                               heightDimension: .absolute(imageSizes[1].height))
         )
-        middleItem.contentInsets = imageInsets
+        middleItem_01.contentInsets = imageInsets
+        
+        let middleItem_02 = NSCollectionLayoutItem(
+          layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(imageSizes[2].width),
+                                             heightDimension: .absolute(imageSizes[2].height))
+        )
+        middleItem_02.contentInsets = imageInsets
         
         let middleItemsGroup = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .absolute(imageSizes[1].height)),
-            subitem: middleItem,
-            count: 2)
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .absolute(imageSizes[1].height)
+            ),
+            subitems: [middleItem_01, middleItem_02]
+        )
         
         let bottomItem = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -145,7 +153,9 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
                 heightDimension: .absolute(totalHeight)
             ),
             subitems: [uppertItem, middleItemsGroup, bottomItem]
-            )
+        )
+        
+        print("DEBUG: \(imageSizes)")
         
         return tweetGroup
     }
@@ -172,9 +182,11 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
         let w2_dash_dash = netWidth * (w2_dash / (size1.width + w2_dash))
         let resultHeight = size2.height * (w2_dash_dash / size2.width)
         
-        let w1_dash_dash = netWidth * (size1.width / (size1.width + w2_dash))
+//        let w1_dash_dash = netWidth * (size1.width / (size1.width + w2_dash))
+        let w1_dash_dash = netWidth - w2_dash_dash
         
-        return [CGSize(width: w1_dash_dash, height: resultHeight), CGSize(width: w2_dash_dash, height: resultHeight)]
+        return [CGSize(width: w1_dash_dash, height: resultHeight),
+                CGSize(width: w2_dash_dash, height: resultHeight)]
     }
     
     
@@ -223,7 +235,7 @@ extension DiffableDatasourceCollectionViewController_2 : UICollectionViewDelegat
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // such as "collectionView(_:cellForItemAt:)"
-        guard let cell = collectionView.cellForItem(at: indexPath) as? SimpleCollectionViewCell,
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TweetCell,
               let tweet = cell.tweet
               else { return }
         print(

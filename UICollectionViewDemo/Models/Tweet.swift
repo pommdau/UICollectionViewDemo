@@ -27,7 +27,7 @@ extension Tweet {
     static func demoTweets() -> [Tweet] {
         var tweets = [Tweet]()
         
-        for _ in 0..<4 {
+        for _ in 0..<1 {
             tweets.append(Tweet.randomTweet())
         }
         
@@ -61,16 +61,23 @@ extension Tweet {
     
     private static func randomImages(numberOfImages: Int = 0) -> [UIImage] {
         let imageList      = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13"]
-        let numberOfImages = 0 < numberOfImages ? numberOfImages : Int.random(in: 1...4)
-        var imageIndexes   = [Int]()
-        
-        while imageIndexes.count < numberOfImages  {
-            let index = Int.random(in: 0...imageList.count - 1)
-            guard !imageIndexes.contains(index) else { continue }
-            imageIndexes.append(index)
-        }
-        
+        let imageIndexes   = [0, 1, 2, 3]
         let images = imageIndexes.map({ index in UIImage(named: imageList[index])! })
         return images
     }
+    
+//    private static func randomImages(numberOfImages: Int = 0) -> [UIImage] {
+//        let imageList      = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13"]
+//        let numberOfImages = 0 < numberOfImages ? numberOfImages : Int.random(in: 1...4)
+//        var imageIndexes   = [Int]()
+//
+//        while imageIndexes.count < numberOfImages  {
+//            let index = Int.random(in: 0...imageList.count - 1)
+//            guard !imageIndexes.contains(index) else { continue }
+//            imageIndexes.append(index)
+//        }
+//
+//        let images = imageIndexes.map({ index in UIImage(named: imageList[index])! })
+//        return images
+//    }
 }
