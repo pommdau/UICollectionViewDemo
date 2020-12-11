@@ -161,38 +161,38 @@ class TweetCell: UICollectionViewCell {
         let imageStack: UIStackView
         
         switch tweet.images.count {
-        case 1, 2, 3, 4:
+        case 1:
             imageStack = UIStackView(arrangedSubviews: [mediaImageView_01])
-//        case 2:
-//            imageStack = UIStackView(arrangedSubviews: [mediaImageView_01, mediaImageView_02])
-//            imageStack.axis = .horizontal
-//            imageStack.distribution = .fillEqually
-//            imageStack.spacing = 4
-//        case 3:
-//            let rightImageStack = UIStackView(arrangedSubviews: [mediaImageView_02, mediaImageView_03])
-//            rightImageStack.axis = .vertical
-//            rightImageStack.distribution = .fillEqually
-//            rightImageStack.spacing = 4
-//
-//            imageStack = UIStackView(arrangedSubviews: [mediaImageView_01, rightImageStack])
-//            imageStack.axis = .horizontal
-//            imageStack.distribution = .fillEqually
-//            imageStack.spacing = 4
-//        case 4:
-//            let topImageStack = UIStackView(arrangedSubviews: [mediaImageView_01, mediaImageView_02])
-//            topImageStack.axis = .horizontal
-//            topImageStack.distribution = .fillEqually
-//            topImageStack.spacing = 4
-//
-//            let bottomImageStack = UIStackView(arrangedSubviews: [mediaImageView_03, mediaImageView_04])
-//            bottomImageStack.axis = .horizontal
-//            bottomImageStack.distribution = .fillEqually
-//            bottomImageStack.spacing = 4
-//
-//            imageStack = UIStackView(arrangedSubviews: [topImageStack, bottomImageStack])
-//            imageStack.axis = .vertical
-//            imageStack.distribution = .fillEqually
-//            imageStack.spacing = 4
+        case 2:
+            imageStack = UIStackView(arrangedSubviews: [mediaImageView_01, mediaImageView_02])
+            imageStack.axis = .horizontal
+            imageStack.distribution = .fillEqually
+            imageStack.spacing = 4
+        case 3:
+            let rightImageStack = UIStackView(arrangedSubviews: [mediaImageView_02, mediaImageView_03])
+            rightImageStack.axis = .vertical
+            rightImageStack.distribution = .fillEqually
+            rightImageStack.spacing = 4
+
+            imageStack = UIStackView(arrangedSubviews: [mediaImageView_01, rightImageStack])
+            imageStack.axis = .horizontal
+            imageStack.distribution = .fillEqually
+            imageStack.spacing = 4
+        case 4:
+            let topImageStack = UIStackView(arrangedSubviews: [mediaImageView_01, mediaImageView_02])
+            topImageStack.axis = .horizontal
+            topImageStack.distribution = .fillEqually
+            topImageStack.spacing = 4
+
+            let bottomImageStack = UIStackView(arrangedSubviews: [mediaImageView_03, mediaImageView_04])
+            bottomImageStack.axis = .horizontal
+            bottomImageStack.distribution = .fillEqually
+            bottomImageStack.spacing = 4
+
+            imageStack = UIStackView(arrangedSubviews: [topImageStack, bottomImageStack])
+            imageStack.axis = .vertical
+            imageStack.distribution = .fillEqually
+            imageStack.spacing = 4
         default:
             fatalError()
         }
@@ -221,25 +221,18 @@ class TweetCell: UICollectionViewCell {
         let count = tweet.images.count
         
         mediaImageView_01.image = tweet.images[0]
-        /*
+        
         if 2 <= count {
-            mediaImageView_02.sd_setImage(with: tweet.medias[1].mediaUrl) { (_, _, _, _) in
-                self.mediaImageView_02.backgroundColor = .clear
-            }
+            mediaImageView_02.image = tweet.images[1]
         }
         
         if 3 <= count {
-            mediaImageView_03.sd_setImage(with: tweet.medias[2].mediaUrl) { (_, _, _, _) in
-                self.mediaImageView_03.backgroundColor = .clear
-            }
+            mediaImageView_03.image = tweet.images[2]
         }
         
         if 4 == count {
-            mediaImageView_04.sd_setImage(with: tweet.medias[3].mediaUrl) { (_, _, _, _) in
-                self.mediaImageView_04.backgroundColor = .clear
-            }
+            mediaImageView_04.image = tweet.images[3]
         }
-         */
     }
 }
 
