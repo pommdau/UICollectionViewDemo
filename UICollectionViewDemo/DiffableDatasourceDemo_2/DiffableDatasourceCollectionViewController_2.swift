@@ -97,14 +97,13 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
     func tweetLayoutGroup(withTweet tweet: Tweet) -> NSCollectionLayoutGroup {
         
         let viewModel = TweetCellViewModel(tweet: tweet)
-        let imageSizes = viewModel.calculateImageSizes(withCellWidth: view.frame.width)
+        let imageSizes = viewModel.calculateImageSizes(withCellWidth: collectionView.frame.width)
         
         // 4枚の画像がある場合
         let upperItem = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .absolute(imageSizes.heightOfCell))
         )
-        upperItem.contentInsets = imageInsets
     
         let tweetGroup = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(

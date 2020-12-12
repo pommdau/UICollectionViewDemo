@@ -34,7 +34,7 @@ struct TweetCellViewModel {
                                    sizeOfSecondImage: size1and2[0],
                                    sizeOfThirdImage: size1and2[1],
                                    sizeOfFourthImage: size3,
-                                   heightOfCell: size0.height + size1and2[0].height + size3.height)
+                                   heightOfCell: size0.height + size1and2[0].height + size3.height + imageInsetsConstant * 4)
     }
     
     
