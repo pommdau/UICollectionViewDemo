@@ -83,7 +83,7 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
     }
     
     func generateLayout() -> UICollectionViewLayout {
-        let layoutGroup = tweetLayoutGroup(withTweet: tweets[0])
+        let layoutGroup = tweetsLayoutGroup(withTweets: tweets)
         
         // NSCollectionLayoutSection: セクションを表すクラス
         // 最終的に作成したNSCollectionLayoutGroupを適用する
@@ -94,23 +94,30 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
         return layout
     }
     
-    func tweetLayoutGroup(withTweet tweet: Tweet) -> NSCollectionLayoutGroup {
+    func tweetsLayoutGroup(withTweets tweets: [Tweet]) -> NSCollectionLayoutGroup {
         
-        let viewModel = TweetCellViewModel(tweet: tweet)
-        let imageSizes = viewModel.calculateImageSizes(withCellWidth: collectionView.frame.width)
+        var layoutItems = [NSCollectionLayoutItem]()
+        var columnHeight: CGFloat = 0.0
         
-        // 4枚の画像がある場合
-        let upperItem = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .absolute(imageSizes.heightOfCell))
-        )
+        tweets.forEach { tweet in
+            let viewModel = TweetCellViewModel(tweet: tweet)
+            let imageSizes = viewModel.calculateImageSizes(withCellWidth: collectionView.frame.width)
+            
+            let upperItem = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .absolute(imageSizes.heightOfCell))
+            )
+            
+            layoutItems.append(upperItem)
+            columnHeight += imageSizes.heightOfCell
+        }
     
         let tweetGroup = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(imageSizes.heightOfCell)
+                heightDimension: .absolute(columnHeight)
             ),
-            subitems: [upperItem]
+            subitems: layoutItems
         )
         
         return tweetGroup

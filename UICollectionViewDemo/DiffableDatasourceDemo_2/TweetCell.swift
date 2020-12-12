@@ -23,7 +23,10 @@ class TweetCell: UICollectionViewCell {
     
     // TODO: RealmSwift対応
     var tweet: Tweet? {
-        didSet { configureUI() }
+        didSet {
+            initializeUI()
+            configureUI()
+        }
     }
     
     static let reuseIdentifer = "tweet-cell-reuse-identifier"
@@ -82,17 +85,11 @@ class TweetCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .white
+        backgroundColor = .random()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    // TODO: reuseされるときのbugfix
-    override func prepareForReuse() {
-        self.removeFromSuperview()
     }
     
     // MARK: - Selectors
@@ -104,9 +101,9 @@ class TweetCell: UICollectionViewCell {
     
     // MARK: - Helpers
     
-    private func configureUI() {
+    private func initializeUI() {
         guard let tweet = tweet else { return }
-        
+ 
         addSubview(mediaImageView_01)
         addSubview(mediaImageView_02)
         addSubview(mediaImageView_03)
@@ -145,7 +142,9 @@ class TweetCell: UICollectionViewCell {
                                         height: imageSizes.sizeOfThirdImage.height)
         mediaImageView_04.setDimensions(width: imageSizes.sizeOfFourthImage.width,
                                         height: imageSizes.sizeOfFourthImage.height)
-        
+    }
+    
+    private func configureUI() {
         configureImageViewContent()
     }
     
