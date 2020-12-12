@@ -95,32 +95,77 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
     }
     
     func tweetsLayoutGroup(withTweets tweets: [Tweet]) -> NSCollectionLayoutGroup {
+        var firstColumnTweets = [Tweet]()
+        var secondColumnTweets = [Tweet]()
         
-        var layoutItems = [NSCollectionLayoutItem]()
-        var columnHeight: CGFloat = 0.0
+        for (tweet_i, tweet) in tweets.enumerated() {
+            if tweet_i % 2 == 0 {
+                firstColumnTweets.append(tweet)
+            } else {
+                secondColumnTweets.append(tweet)
+            }
+        }
+        var arrangedTweets = [Tweet]()  // Column別にレイアウトするために並び替えられたツイート
+        arrangedTweets.append(contentsOf: firstColumnTweets)
+        arrangedTweets.append(contentsOf: secondColumnTweets)
+        self.tweets = arrangedTweets
         
-        tweets.forEach { tweet in
+        var firstLayoutItems = [NSCollectionLayoutItem]()
+        var firstColumnHeight: CGFloat = 0
+        for tweet in firstColumnTweets {
             let viewModel = TweetCellViewModel(tweet: tweet)
-            let imageSizes = viewModel.calculateImageSizes(withCellWidth: collectionView.frame.width)
+            let imageSizes = viewModel.calculateImageSizes(withCellWidth: collectionView.frame.width / 2)
             
             let upperItem = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: .absolute(imageSizes.heightOfCell))
             )
             
-            layoutItems.append(upperItem)
-            columnHeight += imageSizes.heightOfCell
+            firstLayoutItems.append(upperItem)
+            firstColumnHeight += imageSizes.heightOfCell
         }
-    
-        let tweetGroup = NSCollectionLayoutGroup.vertical(
+        
+        let firstColumnTweetsGroup = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(columnHeight)
+                widthDimension: .fractionalWidth(1/2),
+                heightDimension: .absolute(firstColumnHeight)
             ),
-            subitems: layoutItems
+            subitems: firstLayoutItems
         )
         
-        return tweetGroup
+        var secondLayoutItems = [NSCollectionLayoutItem]()
+        var secondColumnHeight: CGFloat = 0
+        for tweet in secondColumnTweets {
+            let viewModel = TweetCellViewModel(tweet: tweet)
+            let imageSizes = viewModel.calculateImageSizes(withCellWidth: collectionView.frame.width / 2)
+            
+            let upperItem = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .absolute(imageSizes.heightOfCell))
+            )
+            
+            secondLayoutItems.append(upperItem)
+            secondColumnHeight += imageSizes.heightOfCell
+        }
+        
+        let secondColumnTweetsGroup = NSCollectionLayoutGroup.vertical(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1/2),
+                heightDimension: .absolute(secondColumnHeight)
+            ),
+            subitems: secondLayoutItems
+        )
+        
+        
+        let allColumnsTweetsGroup = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .absolute(max(firstColumnHeight, secondColumnHeight))
+            ),
+            subitems: [firstColumnTweetsGroup, secondColumnTweetsGroup]
+        )
+        
+        return allColumnsTweetsGroup
     }
     
 }
