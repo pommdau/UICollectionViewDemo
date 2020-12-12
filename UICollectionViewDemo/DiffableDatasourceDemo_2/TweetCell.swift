@@ -24,7 +24,6 @@ class TweetCell: UICollectionViewCell {
     // TODO: RealmSwift対応
     var tweet: Tweet? {
         didSet {
-            initializeUI()
             configureUI()
         }
     }
@@ -101,7 +100,7 @@ class TweetCell: UICollectionViewCell {
     
     // MARK: - Helpers
     
-    private func initializeUI() {
+    private func configureUI() {
         guard let tweet = tweet else { return }
  
         addSubview(mediaImageView_01)
@@ -141,9 +140,7 @@ class TweetCell: UICollectionViewCell {
                                         height: imageSizes.sizeOfThirdImage.height)
         mediaImageView_04.mySetDimensions(width: imageSizes.sizeOfFourthImage.width,
                                         height: imageSizes.sizeOfFourthImage.height)
-    }
-    
-    private func configureUI() {
+        
         configureImageViewContent()
     }
     
