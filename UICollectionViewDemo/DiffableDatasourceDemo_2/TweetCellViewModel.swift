@@ -26,9 +26,10 @@ struct TweetCellViewModel {
     // MARK: - Helpers
     
     func calculateImageSizes(withCellWidth width: CGFloat) -> TweetCellImageSizes {
-        let size0     = calculateImageSize(withImage: tweet.images[0], width: width)
-        let size1and2 = calculateTwoImageSizes(withImages: [tweet.images[1], tweet.images[2]], width: width)
-        let size3     = calculateImageSize(withImage: tweet.images[3], width: width)
+        let netCellWidth = width - imageInsetsConstant * 2
+        let size0     = calculateImageSize(withImage: tweet.images[0], width: netCellWidth)
+        let size1and2 = calculateTwoImageSizes(withImages: [tweet.images[1], tweet.images[2]], width: netCellWidth)
+        let size3     = calculateImageSize(withImage: tweet.images[3], width: netCellWidth)
         
         return TweetCellImageSizes(sizeOfFirstImage: size0,
                                    sizeOfSecondImage: size1and2[0],

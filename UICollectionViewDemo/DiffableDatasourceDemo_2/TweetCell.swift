@@ -120,14 +120,14 @@ class TweetCell: UICollectionViewCell {
         case 4:
             let viewModel = TweetCellViewModel(tweet: tweet)
             imageSizes = viewModel.calculateImageSizes(withCellWidth: self.frame.width)
-            mediaImageView_01.myAnchor(top: topAnchor, left: leftAnchor, right: rightAnchor,
-                                     paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant, paddingRight: imageInsetsConstant)
+            mediaImageView_01.myAnchor(top: topAnchor, left: leftAnchor,
+                                     paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant)
             mediaImageView_02.myAnchor(top: mediaImageView_01.bottomAnchor, left: leftAnchor,
                                      paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant)
-            mediaImageView_03.myAnchor(top: mediaImageView_01.bottomAnchor, left: mediaImageView_02.rightAnchor, right: rightAnchor,
-                                     paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant, paddingRight: imageInsetsConstant)
-            mediaImageView_04.myAnchor(top: mediaImageView_02.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                                     paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant, paddingRight: imageInsetsConstant)
+            mediaImageView_03.myAnchor(top: mediaImageView_01.bottomAnchor, left: mediaImageView_02.rightAnchor,
+                                     paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant)
+            mediaImageView_04.myAnchor(top: mediaImageView_02.bottomAnchor, left: leftAnchor,
+                                     paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant)
         default:
             break
         }
