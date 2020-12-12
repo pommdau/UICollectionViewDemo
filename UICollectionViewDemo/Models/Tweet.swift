@@ -27,7 +27,7 @@ extension Tweet {
     static func demoTweets() -> [Tweet] {
         var tweets = [Tweet]()
         
-        for _ in 0..<10 {
+        for _ in 0..<100 {
             tweets.append(Tweet.randomTweet())
         }
         

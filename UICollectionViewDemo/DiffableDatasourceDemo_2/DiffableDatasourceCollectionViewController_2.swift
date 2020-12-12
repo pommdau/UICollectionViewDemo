@@ -28,7 +28,7 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
     private let imageInsetsConstant: CGFloat = 2
     private lazy var imageInsets = NSDirectionalEdgeInsets(top: imageInsetsConstant, leading: imageInsetsConstant,
                                                       bottom: imageInsetsConstant, trailing: imageInsetsConstant)
-    private let itemsPerRow: CGFloat = 5
+    private let itemsPerRow = 5
     
     // MARK: - Lifecycle
     
@@ -95,81 +95,104 @@ final class DiffableDatasourceCollectionViewController_2: UICollectionViewContro
     }
     
     func tweetsLayoutGroup(withTweets tweets: [Tweet]) -> NSCollectionLayoutGroup {
-        var firstColumnTweets = [Tweet]()
-        var secondColumnTweets = [Tweet]()
-        
-        for (tweet_i, tweet) in tweets.enumerated() {
-            if tweet_i % 2 == 0 {
-                firstColumnTweets.append(tweet)
-            } else {
-                secondColumnTweets.append(tweet)
-            }
+        let columns = calculateAndArrangeTweets(tweets: tweets)
+        // データの更新
+        var arrangedTweets = [Tweet]()
+        columns.forEach { column in
+            arrangedTweets.append(contentsOf: column.tweets)
         }
-        var arrangedTweets = [Tweet]()  // Column別にレイアウトするために並び替えられたツイート
-        arrangedTweets.append(contentsOf: firstColumnTweets)
-        arrangedTweets.append(contentsOf: secondColumnTweets)
         self.tweets = arrangedTweets
         
-        var firstLayoutItems = [NSCollectionLayoutItem]()
-        var firstColumnHeight: CGFloat = 0
-        for tweet in firstColumnTweets {
-            let viewModel = TweetCellViewModel(tweet: tweet)
-            let imageSizes = viewModel.calculateImageSizes(withCellWidth: collectionView.frame.width / 2)
-            
-            let upperItem = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .absolute(imageSizes.heightOfCell))
-            )
-            
-            firstLayoutItems.append(upperItem)
-            firstColumnHeight += imageSizes.heightOfCell
+        // DEBUG
+        for tweet in self.tweets {
+            print("DEBUG: 🐱\(tweet.id)")
         }
         
-        let firstColumnTweetsGroup = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1/2),
-                heightDimension: .absolute(firstColumnHeight)
-            ),
-            subitems: firstLayoutItems
-        )
-        
-        var secondLayoutItems = [NSCollectionLayoutItem]()
-        var secondColumnHeight: CGFloat = 0
-        for tweet in secondColumnTweets {
-            let viewModel = TweetCellViewModel(tweet: tweet)
-            let imageSizes = viewModel.calculateImageSizes(withCellWidth: collectionView.frame.width / 2)
+        var columnLayoutGroups = [NSCollectionLayoutGroup]()
+        for column in columns {
+            var layoutItems = [NSCollectionLayoutItem]()
+            for (tweet_i, _) in column.tweets.enumerated() {
+                let upperItem = NSCollectionLayoutItem(
+                    layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .absolute(column.tweetcellImageSizes[tweet_i].heightOfCell))
+                )
+                
+                layoutItems.append(upperItem)
+            }
             
-            let upperItem = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .absolute(imageSizes.heightOfCell))
+            let columnLayoutGroup = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1/CGFloat(itemsPerRow)),
+                    heightDimension: .absolute(column.columnHeight)
+                ),
+                subitems: layoutItems
             )
             
-            secondLayoutItems.append(upperItem)
-            secondColumnHeight += imageSizes.heightOfCell
+            columnLayoutGroups.append(columnLayoutGroup)
         }
         
-        let secondColumnTweetsGroup = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1/2),
-                heightDimension: .absolute(secondColumnHeight)
-            ),
-            subitems: secondLayoutItems
-        )
         
+        var maxColumnHeight: CGFloat = 0
+        columns.forEach { column in
+            if maxColumnHeight < column.columnHeight {
+                maxColumnHeight = column.columnHeight
+            }
+        }
         
         let allColumnsTweetsGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(max(firstColumnHeight, secondColumnHeight))
+                heightDimension: .absolute(maxColumnHeight)
             ),
-            subitems: [firstColumnTweetsGroup, secondColumnTweetsGroup]
+            subitems: columnLayoutGroups
         )
         
         return allColumnsTweetsGroup
     }
     
+    // カラム別にツイートを分割する
+    private func calculateAndArrangeTweets(tweets: [Tweet]) -> [TweetsColumn] {
+        var tweetsColumnList = [TweetsColumn]()
+        for _ in 0..<itemsPerRow {
+            tweetsColumnList.append(TweetsColumn())
+        }
+        
+        var viewModels = [TweetCellViewModel]()
+        for tweet in tweets {
+            viewModels.append(TweetCellViewModel(tweet: tweet))
+        }
+        
+        for (viewModel_i, viewModel) in viewModels.enumerated() {
+            var minimumHeight = CGFloat.greatestFiniteMagnitude
+            var minimumColumnIndex = 0
+            for (column_i, tweetColumn) in tweetsColumnList.enumerated() {
+                // 現在最も低い高さのカラムを探す
+                if tweetColumn.columnHeight < minimumHeight {
+                    minimumHeight = tweetColumn.columnHeight
+                    minimumColumnIndex = column_i
+                }
+            }
+            
+            let cellSize = viewModel.calculateImageSizes(withCellWidth: collectionView.frame.width / CGFloat(itemsPerRow))
+            tweetsColumnList[minimumColumnIndex].columnHeight += cellSize.heightOfCell
+            tweetsColumnList[minimumColumnIndex].tweetcellImageSizes.append(cellSize)
+            tweetsColumnList[minimumColumnIndex].tweets.append(tweets[viewModel_i])
+            tweetsColumnList[minimumColumnIndex].viewModels.append(viewModel)
+        }
+        
+        return tweetsColumnList
+    }
 }
 
+struct TweetsColumn {
+    var tweets = [Tweet]()
+    var viewModels = [TweetCellViewModel]()
+    var tweetcellImageSizes = [TweetCellImageSizes]()
+    var columnHeight: CGFloat = 0.0
+}
+
+    
+    
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension DiffableDatasourceCollectionViewController_2 : UICollectionViewDelegateFlowLayout {
