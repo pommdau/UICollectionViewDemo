@@ -28,6 +28,7 @@
 		D05DB8DC255CB74A00606ED1 /* SimpleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DB8DB255CB74A00606ED1 /* SimpleCollectionViewController.swift */; };
 		D07F8CC52583F8530038C8E8 /* TweetCellImageSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07F8CC42583F8530038C8E8 /* TweetCellImageSizes.swift */; };
 		D07F8CC82584C86D0038C8E8 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07F8CC72584C86D0038C8E8 /* UIColor+Extensions.swift */; };
+		D07F8CCB2584DF910038C8E8 /* MyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07F8CCA2584DF910038C8E8 /* MyImageView.swift */; };
 		D0D645CA257BC0A5000A2985 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D645C9257BC0A5000A2985 /* Tweet.swift */; };
 		D0D645CF257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D645CE257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift */; };
 		D0D645D9257D1534000A2985 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D645D8257D1534000A2985 /* User.swift */; };
@@ -57,6 +58,7 @@
 		D05DB8DB255CB74A00606ED1 /* SimpleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewController.swift; sourceTree = "<group>"; };
 		D07F8CC42583F8530038C8E8 /* TweetCellImageSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCellImageSizes.swift; sourceTree = "<group>"; };
 		D07F8CC72584C86D0038C8E8 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		D07F8CCA2584DF910038C8E8 /* MyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyImageView.swift; sourceTree = "<group>"; };
 		D0D645C9257BC0A5000A2985 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		D0D645CE257CC853000A2985 /* DiffableDatasourceCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDatasourceCollectionViewController.swift; sourceTree = "<group>"; };
 		D0D645D8257D1534000A2985 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				D034C3E6258203C400599FBC /* TweetCell.swift */,
 				D034C3ED2583F3A500599FBC /* TweetCellViewModel.swift */,
 				D07F8CC42583F8530038C8E8 /* TweetCellImageSizes.swift */,
+				D07F8CCA2584DF910038C8E8 /* MyImageView.swift */,
 			);
 			path = DiffableDatasourceDemo_2;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				D07F8CC52583F8530038C8E8 /* TweetCellImageSizes.swift in Sources */,
 				D03DD4102562C78E00DF4F29 /* SimpleCollectionViewCell.swift in Sources */,
 				D034C3EE2583F3A500599FBC /* TweetCellViewModel.swift in Sources */,
+				D07F8CCB2584DF910038C8E8 /* MyImageView.swift in Sources */,
 				D03DD40D2562C4EB00DF4F29 /* Photo.swift in Sources */,
 				D05DB8C4255CB6D600606ED1 /* AppDelegate.swift in Sources */,
 				D0D645CA257BC0A5000A2985 /* Tweet.swift in Sources */,

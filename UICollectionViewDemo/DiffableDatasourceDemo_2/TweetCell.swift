@@ -33,8 +33,8 @@ class TweetCell: UICollectionViewCell {
     
     weak var delegate: TweetCellDelegate?
     
-    private lazy var mediaImageView_01: UIImageView = {
-        let iv = UIImageView()
+    private lazy var mediaImageView_01: MyImageView = {
+        let iv = MyImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 20
@@ -45,8 +45,8 @@ class TweetCell: UICollectionViewCell {
         return iv
     }()
     
-    private lazy var mediaImageView_02: UIImageView = {
-        let iv = UIImageView()
+    private lazy var mediaImageView_02: MyImageView = {
+        let iv = MyImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 20
@@ -57,8 +57,8 @@ class TweetCell: UICollectionViewCell {
         return iv
     }()
     
-    private lazy var mediaImageView_03: UIImageView = {
-        let iv = UIImageView()
+    private lazy var mediaImageView_03: MyImageView = {
+        let iv = MyImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 20
@@ -69,8 +69,8 @@ class TweetCell: UICollectionViewCell {
         return iv
     }()
     
-    private lazy var mediaImageView_04: UIImageView = {
-        let iv = UIImageView()
+    private lazy var mediaImageView_04: MyImageView = {
+        let iv = MyImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 20
@@ -121,26 +121,25 @@ class TweetCell: UICollectionViewCell {
         case 4:
             let viewModel = TweetCellViewModel(tweet: tweet)
             imageSizes = viewModel.calculateImageSizes(withCellWidth: self.frame.width)
-            
-            mediaImageView_01.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor,
+            mediaImageView_01.myAnchor(top: topAnchor, left: leftAnchor, right: rightAnchor,
                                      paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant, paddingRight: imageInsetsConstant)
-            mediaImageView_02.anchor(top: mediaImageView_01.bottomAnchor, left: leftAnchor,
+            mediaImageView_02.myAnchor(top: mediaImageView_01.bottomAnchor, left: leftAnchor,
                                      paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant)
-            mediaImageView_03.anchor(top: mediaImageView_01.bottomAnchor, left: mediaImageView_02.rightAnchor, right: rightAnchor,
+            mediaImageView_03.myAnchor(top: mediaImageView_01.bottomAnchor, left: mediaImageView_02.rightAnchor, right: rightAnchor,
                                      paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant, paddingRight: imageInsetsConstant)
-            mediaImageView_04.anchor(top: mediaImageView_02.bottomAnchor, left: leftAnchor, right: rightAnchor,
+            mediaImageView_04.myAnchor(top: mediaImageView_02.bottomAnchor, left: leftAnchor, right: rightAnchor,
                                      paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant, paddingRight: imageInsetsConstant)
         default:
             break
         }
         
-        mediaImageView_01.setDimensions(width: imageSizes.sizeOfFirstImage.width,
+        mediaImageView_01.mySetDimensions(width: imageSizes.sizeOfFirstImage.width,
                                         height: imageSizes.sizeOfFirstImage.height)
-        mediaImageView_02.setDimensions(width: imageSizes.sizeOfSecondImage.width,
+        mediaImageView_02.mySetDimensions(width: imageSizes.sizeOfSecondImage.width,
                                         height: imageSizes.sizeOfSecondImage.height)
-        mediaImageView_03.setDimensions(width: imageSizes.sizeOfThirdImage.width,
+        mediaImageView_03.mySetDimensions(width: imageSizes.sizeOfThirdImage.width,
                                         height: imageSizes.sizeOfThirdImage.height)
-        mediaImageView_04.setDimensions(width: imageSizes.sizeOfFourthImage.width,
+        mediaImageView_04.mySetDimensions(width: imageSizes.sizeOfFourthImage.width,
                                         height: imageSizes.sizeOfFourthImage.height)
     }
     
