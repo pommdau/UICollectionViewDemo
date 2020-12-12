@@ -139,8 +139,8 @@ class TweetCell: UICollectionViewCell {
                                         height: imageSizes.sizeOfSecondImage.height)
         mediaImageView_03.setDimensions(width: imageSizes.sizeOfThirdImage.width,
                                         height: imageSizes.sizeOfThirdImage.height)
-        mediaImageView_04.setDimensions(width: imageSizes.sizeOfThirdImage.width,
-                                        height: imageSizes.sizeOfThirdImage.height)
+        mediaImageView_04.setDimensions(width: imageSizes.sizeOfFourthImage.width,
+                                        height: imageSizes.sizeOfFourthImage.height)
         
         configureImageViewContent()
     }
