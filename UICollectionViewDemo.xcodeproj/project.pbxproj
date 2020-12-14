@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D0087EC62566B64200FABC22 /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0087EC52566B64200FABC22 /* AlbumCollectionViewController.swift */; };
 		D0087ECB25678C1500FABC22 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0087ECA25678C1500FABC22 /* AlbumCollectionViewCell.swift */; };
+		D0088DC725867F5100AC4E4E /* UIImage+CalculateFractionalSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0088DC625867F5100AC4E4E /* UIImage+CalculateFractionalSize.swift */; };
 		D01AB6A82581176300A4B139 /* DiffableDatasourceCollectionViewController_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AB6A72581176300A4B139 /* DiffableDatasourceCollectionViewController_2.swift */; };
 		D034C3E7258203C400599FBC /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C3E6258203C400599FBC /* TweetCell.swift */; };
 		D034C3EE2583F3A500599FBC /* TweetCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C3ED2583F3A500599FBC /* TweetCellViewModel.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		D0087EC52566B64200FABC22 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		D0087ECA25678C1500FABC22 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0088DC625867F5100AC4E4E /* UIImage+CalculateFractionalSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CalculateFractionalSize.swift"; sourceTree = "<group>"; };
 		D01AB6A72581176300A4B139 /* DiffableDatasourceCollectionViewController_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDatasourceCollectionViewController_2.swift; sourceTree = "<group>"; };
 		D034C3E6258203C400599FBC /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		D034C3ED2583F3A500599FBC /* TweetCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCellViewModel.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				D03DD4132562CC1E00DF4F29 /* UIView+AutoLayout.swift */,
 				D07F8CC72584C86D0038C8E8 /* UIColor+Extensions.swift */,
+				D0088DC625867F5100AC4E4E /* UIImage+CalculateFractionalSize.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				D034C3EE2583F3A500599FBC /* TweetCellViewModel.swift in Sources */,
 				D07F8CCB2584DF910038C8E8 /* MyImageView.swift in Sources */,
 				D03DD40D2562C4EB00DF4F29 /* Photo.swift in Sources */,
+				D0088DC725867F5100AC4E4E /* UIImage+CalculateFractionalSize.swift in Sources */,
 				D05DB8C4255CB6D600606ED1 /* AppDelegate.swift in Sources */,
 				D0D645CA257BC0A5000A2985 /* Tweet.swift in Sources */,
 				D07F8CC82584C86D0038C8E8 /* UIColor+Extensions.swift in Sources */,
@@ -427,6 +431,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 662PVPVA3N;
 				INFOPLIST_FILE = UICollectionViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -445,6 +450,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 662PVPVA3N;
 				INFOPLIST_FILE = UICollectionViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

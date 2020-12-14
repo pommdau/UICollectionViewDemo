@@ -119,9 +119,9 @@ class TweetCell: UICollectionViewCell {
             break
         case 4:
             let viewModel = TweetCellViewModel(tweet: tweet)
-            imageSizes = viewModel.calculateImageSizes(withCellWidth: self.frame.width)
+            imageSizes = viewModel.calculateImageSizes()
             mediaImageView_01.myAnchor(top: topAnchor, left: leftAnchor,
-                                     paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant)
+                                       paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant)
             mediaImageView_02.myAnchor(top: mediaImageView_01.bottomAnchor, left: leftAnchor,
                                      paddingTop: imageInsetsConstant, paddingLeft: imageInsetsConstant)
             mediaImageView_03.myAnchor(top: mediaImageView_01.bottomAnchor, left: mediaImageView_02.rightAnchor,
@@ -132,15 +132,19 @@ class TweetCell: UICollectionViewCell {
             break
         }
         
-        mediaImageView_01.mySetDimensions(width: imageSizes.sizeOfFirstImage.width,
-                                        height: imageSizes.sizeOfFirstImage.height)
-        mediaImageView_02.mySetDimensions(width: imageSizes.sizeOfSecondImage.width,
-                                        height: imageSizes.sizeOfSecondImage.height)
-        mediaImageView_03.mySetDimensions(width: imageSizes.sizeOfThirdImage.width,
-                                        height: imageSizes.sizeOfThirdImage.height)
-        mediaImageView_04.mySetDimensions(width: imageSizes.sizeOfFourthImage.width,
-                                        height: imageSizes.sizeOfFourthImage.height)
-        
+        mediaImageView_01.setDimensions(cell: self,
+                                        fractionalWidth: imageSizes.fractionSizeOfFirstImage.fractionalWidth,
+                                        fractionalHeight: imageSizes.fractionSizeOfFirstImage.fractionlHeight)
+        mediaImageView_02.setDimensions(cell: self,
+                                        fractionalWidth: imageSizes.fractionSizeOfSecondImage.fractionalWidth,
+                                        fractionalHeight: imageSizes.fractionSizeOfSecondImage.fractionlHeight)
+        mediaImageView_03.setDimensions(cell: self,
+                                        fractionalWidth: imageSizes.fractionSizeOfThirdImage.fractionalWidth,
+                                        fractionalHeight: imageSizes.fractionSizeOfThirdImage.fractionlHeight)
+        mediaImageView_04.setDimensions(cell: self,
+                                        fractionalWidth: imageSizes.fractionSizeOfFourthImage.fractionalWidth,
+                                        fractionalHeight: imageSizes.fractionSizeOfFourthImage.fractionlHeight)
+                
         configureImageViewContent()
     }
     

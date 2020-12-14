@@ -75,13 +75,13 @@ class MyImageView: UIImageView {
         }
     }
     
-    func mySetDimensions(width: CGFloat, height: CGFloat) {
+    func setDimensions(cell: UICollectionViewCell, fractionalWidth: CGFloat, fractionalHeight: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         
-        widthConstraint = widthAnchor.constraint(equalToConstant: width)
+        widthConstraint = widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: fractionalWidth)
         widthConstraint?.isActive = true
-        heightConstraint = heightAnchor.constraint(equalToConstant: height)
+        
+        heightConstraint = heightAnchor.constraint(equalTo: cell.widthAnchor, multiplier: fractionalHeight)
         heightConstraint?.isActive = true
     }
-
 }
